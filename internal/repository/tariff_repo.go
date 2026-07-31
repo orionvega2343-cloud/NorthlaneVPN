@@ -9,6 +9,7 @@ import (
 type TariffRepo interface {
 	CreateTariff(m models.Tariff) (models.Tariff, error)
 	GetAllTariffs() ([]models.Tariff, error)
+	GetTariffByID(id int) (models.Tariff, error)
 	UpdateTariff(m models.Tariff) error
 }
 
@@ -33,6 +34,15 @@ func (r *TariffRepoImpl) GetAllTariffs() ([]models.Tariff, error) {
 	err := r.db.Select(&m, `SELECT id, name, duration_days, traffic_limit_gb, device_limit, price, is_active FROM tariffs WHERE is_active = true`)
 	if err != nil {
 		return []models.Tariff{}, err
+	}
+	return m, nil
+}
+
+func (r *TariffRepoImpl) GetTariffByID(id int) (models.Tariff, error) {
+	var m models.Tariff
+	err := r.db.Get(&m, `SELECT id, name, duration_days, traffic_limit_gb, device_limit, price, is_active FROM tariffs WHERE id = $1`, id)
+	if err != nil {
+		return models.Tariff{}, err
 	}
 	return m, nil
 }
