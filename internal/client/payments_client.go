@@ -4,7 +4,7 @@ import "NorthlaneVPN/internal/models"
 
 type PaymentClient interface {
 	CreatePayment(m models.Payment) (models.Payment, error)
-	GetPaymentStatus(transactionId string) (models.Payment, error)
+	GetPaymentStatus(transactionId string) (int, error)
 }
 
 type PaymentClientImpl struct {
@@ -21,7 +21,7 @@ func (p *PaymentClientImpl) CreatePayment(m models.Payment) (models.Payment, err
 	return m, nil
 }
 
-func (p *PaymentClientImpl) GetPaymentStatus(transactionId string) (models.Payment, error) {
+func (p *PaymentClientImpl) GetPaymentStatus(transactionId string) (int, error) {
 	//TODO: получить статусы оплаты, передать в сервисы, для автоматической выдачи подписки
-	return models.Payment{}, nil
+	return 1, nil
 }

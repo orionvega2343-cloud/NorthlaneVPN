@@ -30,7 +30,7 @@ func (r *PaymentRepoImpl) CreatePayment(m models.Payment) (models.Payment, error
 
 func (r *PaymentRepoImpl) GetPaymentById(id int) (models.Payment, error) {
 	var m models.Payment
-	err := r.db.Get(&m, `SELECT id, user_id, subsctiption_id, amount, status, provider, transaction_id FROM payments WHERE id = $1`, id)
+	err := r.db.Get(&m, `SELECT id, user_id, subsctription_id, amount, status, provider, transaction_id FROM payments WHERE id = $1`, id)
 	if err != nil {
 		return models.Payment{}, err
 	}

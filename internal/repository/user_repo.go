@@ -9,7 +9,7 @@ import (
 type UserRepo interface {
 	CreateUser(user models.User) (models.User, error)
 	GetUserById(id int) (models.User, error)
-	GetUserByTgId(TgId int) (models.User, error)
+	GetUserByTgId(TgId int64) (models.User, error)
 	SetBanStatus(status bool, id int) error
 }
 
@@ -38,7 +38,7 @@ func (r *UserRepoImpl) GetUserById(id int) (models.User, error) {
 	return user, nil
 }
 
-func (r *UserRepoImpl) GetUserByTgId(TgId int) (models.User, error) {
+func (r *UserRepoImpl) GetUserByTgId(TgId int64) (models.User, error) {
 	var users models.User
 	err := r.db.Get(&users, `SELECT id, username, tg_id, created_at, is_banned FROM users WHERE tg_id = $1`, TgId)
 	if err != nil {
