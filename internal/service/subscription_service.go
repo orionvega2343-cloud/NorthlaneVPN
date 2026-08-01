@@ -9,6 +9,7 @@ import (
 
 type SubscriptionService interface {
 	CreateSubscription(m models.Subscription) (models.Subscription, error)
+	CreateTrial(userId int) (models.Subscription, error)
 	GetBySubscriptionId(id int) (models.Subscription, error)
 	GetByUserId(UserId int) (models.Subscription, error)
 	UpdateSubscription(m models.Subscription) error
@@ -38,7 +39,12 @@ func (s *SubscriptionServiceImpl) CreateSubscription(m models.Subscription) (mod
 
 	//TODO: привязать реальный id сервера
 	m.ServerId = 1
-	m.Status = "active"
+
+	if m.IsTrial {
+		m.Status = "trial"
+	} else {
+		m.Status = "active"
+	}
 
 	//Создаем подписку
 	sub, err := s.subRepo.CreateSubscription(m)
