@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS subscriptions(
     starts_at TIMESTAMP NOT NULL DEFAULT NOW(),
     finishes_at TIMESTAMP  NOT NULL DEFAULT NOW(),
     traffic_used_gb INT NOT NULL,
-    is_trial BOOLEAN NOT NULL
+    is_trial BOOLEAN NOT NULL,
+    uuid UUID NOT NULL DEFAULT gen_random_uuid()
 )
