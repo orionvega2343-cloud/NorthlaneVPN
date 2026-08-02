@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS junction_table(
+CREATE TABLE IF NOT EXISTS subscription_servers (
     -- Соединение первичных ключей таблицы подписок и серверов
     subscription_id INT NOT NULL,
     server_id INT NOT NULL,

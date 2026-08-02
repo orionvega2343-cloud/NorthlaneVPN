@@ -6,5 +6,8 @@ CREATE TABLE IF NOT EXISTS servers(
     status TEXT NOT NULL,
     load_score INT NOT NULL,
     region TEXT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    name TEXT NOT NULL,
+    reality_key TEXT NOT NULL,
+    sni TEXT NOT NULL
 )

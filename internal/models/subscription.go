@@ -12,4 +12,5 @@ type Subscription struct {
 	FinishesAt    time.Time `db:"finishes_at"`
 	TrafficUsedGb int       `db:"traffic_used_gb"`
 	IsTrial       bool      `db:"is_trial"`
+	Uuid          string    `db:"uuid"`
 }

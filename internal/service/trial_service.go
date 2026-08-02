@@ -10,8 +10,6 @@ import (
 // TODO: вынести id тарифа триала в конфиг
 const trialTariffId = 1
 
-// CreateTrial - обертка над CreateSubscription,
-// доступна пользователю только один раз
 func (s *SubscriptionServiceImpl) CreateTrial(userId int) (models.Subscription, error) {
 	//Проверяем, что у пользователя еще нет подписки -
 	//триал выдается только один раз
